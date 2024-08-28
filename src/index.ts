@@ -23,7 +23,7 @@ async function run() {
     logger.startGroup("Fetching last sync date")
     let maybeLastSyncDate = await getLastSyncDate()
     if (!maybeLastSyncDate) {
-        logger.setFailed(`Failed to pull sync date from "${config.repoToSyncPath}" file. Does it exist?`)
+        logger.setFailed(`Failed to pull sync date from "${config.currentRepoCachePath}" file. Does it exist?`)
     }
     const lastSyncDate = maybeLastSyncDate!.trim()
     logger.info(`Last sync date is ${lastSyncDate}`)

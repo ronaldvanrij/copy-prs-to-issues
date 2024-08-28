@@ -8,8 +8,7 @@ export const testConfig: Config = {
     currentRepoLabelToAdd: "test-label",
     repoToSyncOwner: "poll-github-repo",
     repoToSync: "dummy-source-repo",
-    repoToSyncPath: "data.txt",
-    trackingIssueTemplateTitle: "Tracking issue for {{ path }}: {{ sha-short }}",
+        trackingIssueTemplateTitle: "Tracking issue for {{ path }}: {{ sha-short }}",
     trackingIssueTemplateBody: [
         "URL: [{{ message }}]({{ url }})",
         "PullRequest date: {{ PullRequest-date }}",

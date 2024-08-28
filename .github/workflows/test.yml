@@ -48,7 +48,6 @@ jobs:
       - uses: ./
         with:
           repo-to-sync: poll-github-repo/dummy-source-repo
-          path-to-sync: data.txt
           cache-path: .data.txt.last-sync
           tracking-issue-label: upstream-data-txt
           tracking-issue-title: "Update on {{ path }}: {{ sha-short }}"

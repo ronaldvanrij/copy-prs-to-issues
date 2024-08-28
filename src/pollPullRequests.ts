@@ -4,43 +4,40 @@ import { PullRequest } from "./types"
 import { Logger } from "./logger"
 
 interface Params {
-    since?: string
-    per_page?: number
+    since: string
 }
 
 export function pollPullRequestsWith(config: Config, logger: Logger) {
     const token = config.token
     const owner = config.repoToSyncOwner
     const repo = config.repoToSync
-//    const path = config.repoToSyncPath
 
     return async function pollFileChanges(params?: Params): Promise<PullRequest[]> {
-        const { since, per_page } = params || {}
+        const { since } = params || {}
         const octokit = github.getOctokit(token)
 
-        const iterator = octokit.paginate.iterator(
-            octokit.rest.pulls.list({
+        const {data} = await octokit.rest.pulls.list({
               owner,
               repo,
             })
-        ).filter((pull) => Date.parse(pull.created_at) > Date.parse(since))
 
         const result: PullRequest[] = []
 
-        logger.startGroup(`Pulling pull requests from ${owner}/${repo} since="${since}", path="${path}"`)
+        logger.startGroup(`Pulling pull requests from ${owner}/${repo} since="${since}"`)
         try {
-            for await (const { data } of iterator) {
-                logger.info(`Pulled a page with ${data.length} PullRequests`)
                 for (const prData of data) {
+
+                    if (Date.parse(prData.created_at as string) < Date.parse(since as string))
+                        continue
+
                     let pr: PullRequest = {
                         title: prData.title,
                         url: prData.html_url,
-                        body: prData.body,
+                        body: prData.body || "",
                         date: prData.created_at
                     }
                     logger.info(`Extracted PR ${JSON.stringify(pr)}`)
                     result.push(pr)
-                }
             }
         } catch (err) {
             logger.setFailed(`Failed to pull data from GitHub: ${err}`)

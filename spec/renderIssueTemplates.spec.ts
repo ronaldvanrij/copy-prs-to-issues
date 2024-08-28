@@ -1,5 +1,5 @@
 import { renderIssueTemplatesWith } from "../src/renderIssueTemplates"
-import { PullRequest1, PullRequest2 } from "./PullRequests"
+import { PullRequest1, PullRequest2 } from "./pullRequests"
 import { Config } from "../src/config"
 import { testConfig } from "./testConfig"
 
