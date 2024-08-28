@@ -1,7 +1,7 @@
-name: bump v1 tag
-on:
-  push:
-    branches: [ master ]
+name: release
+on: 
+  release:
+    types: [released, prereleased]
 jobs:
   release:
     name: release
