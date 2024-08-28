@@ -25,7 +25,7 @@ export function createSyncPullRequestWith(config: Config, logger: Logger) {
         })
         const sha = (data as { sha: string }).sha
 
-        const { data: { PullRequest } } = await octokit.rest.repos.createOrUpdateFileContents({
+        const { data: { commit } } = await octokit.rest.repos.createOrUpdateFileContents({
             owner,
             repo,
             path: cachePath,
@@ -34,6 +34,6 @@ export function createSyncPullRequestWith(config: Config, logger: Logger) {
             message: `sync: update ${cachePath}`
         })
 
-        return PullRequest.html_url
+        return commit.html_url
     }
 }
