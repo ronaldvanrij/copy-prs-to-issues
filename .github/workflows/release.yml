@@ -16,12 +16,12 @@ jobs:
 
       - run: git config --global user.email "ci@action.com"
       - run: git config --global user.name "Release Action"
-      - run: git branch -D v1-branch || true
-      - run: git tag -d v1 || true
+      - run: git branch -D ${{ github.event.release.tag_name}}-branch || true
+      - run: git tag -d ${{ github.event.release.tag_name}} || true
 
-      - run: git checkout -b v1-branch
+      - run: git checkout -b ${{ github.event.release.tag_name}}-branch
       - run: git add -f dist/index.js
       - run: git commit -m "Rebuild dist/index.js"
-      - run: git tag v1
-      - run: git push origin v1-branch -f
+      - run: git tag ${{ github.event.release.tag_name}}
+      - run: git push origin ${{ github.event.release.tag_name}}-branch -f
       - run: git push --tags -f

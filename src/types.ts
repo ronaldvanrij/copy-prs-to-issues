@@ -1,8 +1,7 @@
-export interface Commit {
-    path: string
+export interface PullRequest {
+    title: string
     url: string
-    sha: string
-    message: string
+    body: string
     date: string
 }
 
