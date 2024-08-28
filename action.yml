@@ -12,11 +12,6 @@ inputs:
       Repository you want to monitor.
       Must have a format "owner/repo" (like "facebook/react").
     required: true
-  path-to-sync:
-    description: |
-      Path to the file in <repo-to-sync> that you want to monitor.
-      Can be something like "CHANGELOG.md".
-    required: true
   cache-path:
     description: |
       Path to a local file that stores timestamps of the last check in ISO format.

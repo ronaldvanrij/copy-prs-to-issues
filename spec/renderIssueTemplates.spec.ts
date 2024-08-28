@@ -1,5 +1,5 @@
 import { renderIssueTemplatesWith } from "../src/renderIssueTemplates"
-import { COMMIT1, COMMIT2 } from "./commits"
+import { PullRequest1, PullRequest2 } from "./pullRequests"
 import { Config } from "../src/config"
 import { testConfig } from "./testConfig"
 
@@ -9,7 +9,7 @@ function setup(overrides?: { config?: Partial<Config> }) {
     return { config, renderIssueTemplates }
 }
 
-it.concurrent("renders given template for every commit", async () => {
+it.concurrent("renders given template for every PullRequest", async () => {
     const { renderIssueTemplates } = setup({
         config: {
             trackingIssueTemplateTitle: "SHA short = {{ sha-short }}",
@@ -18,7 +18,7 @@ it.concurrent("renders given template for every commit", async () => {
                 "sha-short = {{ sha-short }}",
                 "sha-full = {{ sha-full }}",
                 "message = {{ message }}",
-                "commit-date = {{ commit-date }}",
+                "PullRequest-date = {{ PullRequest-date }}",
                 "url = {{ url }}",
                 // and render it again to make sure we replace globally
                 "url (again) = {{ url }}",
@@ -26,7 +26,7 @@ it.concurrent("renders given template for every commit", async () => {
         }
     })
 
-    const rendered = renderIssueTemplates([COMMIT1, COMMIT2])
+    const rendered = renderIssueTemplates([PullRequest1, PullRequest2])
     expect(rendered).toEqual([
         {
             title: "SHA short = 3a84a57",
@@ -35,9 +35,9 @@ it.concurrent("renders given template for every commit", async () => {
                 "sha-short = 3a84a57",
                 "sha-full = 3a84a578463d2b0e7f8abf4bd7a131a4ab59adaa",
                 "message = update data.txt",
-                "commit-date = 2022-03-14T16:23:17Z",
-                "url = https://github.com/poll-github-repo/dummy-source-repo/commit/3a84a578463d2b0e7f8abf4bd7a131a4ab59adaa",
-                "url (again) = https://github.com/poll-github-repo/dummy-source-repo/commit/3a84a578463d2b0e7f8abf4bd7a131a4ab59adaa",
+                "PullRequest-date = 2022-03-14T16:23:17Z",
+                "url = https://github.com/poll-github-repo/dummy-source-repo/PullRequest/3a84a578463d2b0e7f8abf4bd7a131a4ab59adaa",
+                "url (again) = https://github.com/poll-github-repo/dummy-source-repo/PullRequest/3a84a578463d2b0e7f8abf4bd7a131a4ab59adaa",
             ].join("\n"),
         },
         {
@@ -47,9 +47,9 @@ it.concurrent("renders given template for every commit", async () => {
                 "sha-short = b6138d0",
                 "sha-full = b6138d0ac3cf8fe1edc6fb48e46fefb990137746",
                 "message = update data.txt (two)",
-                "commit-date = 2022-03-14T16:23:29Z",
-                "url = https://github.com/poll-github-repo/dummy-source-repo/commit/b6138d0ac3cf8fe1edc6fb48e46fefb990137746",
-                "url (again) = https://github.com/poll-github-repo/dummy-source-repo/commit/b6138d0ac3cf8fe1edc6fb48e46fefb990137746",
+                "PullRequest-date = 2022-03-14T16:23:29Z",
+                "url = https://github.com/poll-github-repo/dummy-source-repo/PullRequest/b6138d0ac3cf8fe1edc6fb48e46fefb990137746",
+                "url (again) = https://github.com/poll-github-repo/dummy-source-repo/PullRequest/b6138d0ac3cf8fe1edc6fb48e46fefb990137746",
             ].join("\n")
         },
     ])

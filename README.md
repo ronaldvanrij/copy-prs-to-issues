@@ -34,9 +34,6 @@ Usage:
         # Must have a format "owner/repo" (like "facebook/react")
         repo-to-sync: owner/repo
 
-        # Path to the file in <repo-to-sync> that you want to track
-        path-to-sync: CHANGELOG.md
-
         # Path to a local file that stores timestamps of the last check in ISO format.
         # This is required to check only a small subset of changes on every run.
         # NOTE: this file MUST exist before the action runs
@@ -135,7 +132,6 @@ Observer repo stores last sync date in [`.last-sync` file](https://github.com/po
 2022-03-18T00:33:38.5541373Z ##[group]Run poll-github-repo/action@v1
 2022-03-18T00:33:38.5541672Z with:
 2022-03-18T00:33:38.5541949Z   repo-to-sync: poll-github-repo/dummy-source-repo
-2022-03-18T00:33:38.5542270Z   path-to-sync: data.txt
 2022-03-18T00:33:38.5542521Z   cache-path: .last-sync
 2022-03-18T00:33:38.5542820Z   tracking-issue-label: upstream-data-txt
 2022-03-18T00:33:38.5543251Z   tracking-issue-title: Update on {{ path }}: {{ sha-short }}

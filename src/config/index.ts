@@ -9,7 +9,6 @@ export interface Config {
     currentRepoLabelToAdd?: string
     repoToSyncOwner: string
     repoToSync: string
-    repoToSyncPath: string
     trackingIssueTemplateTitle?: string
     trackingIssueTemplateBody?: string[]
     yesCreateIssues: boolean

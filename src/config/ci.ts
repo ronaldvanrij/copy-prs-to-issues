@@ -21,7 +21,6 @@ export function load(): Config {
         currentRepoLabelToAdd: core.getInput("tracking-issue-label") ?? undefined,
         repoToSyncOwner: repoToSyncOwner,
         repoToSync: repoToSync,
-        repoToSyncPath: core.getInput("path-to-sync", { required: true }),
         trackingIssueTemplateTitle: core.getInput("tracking-issue-title") ?? undefined,
         trackingIssueTemplateBody: core.getMultilineInput("tracking-issue-body") ?? undefined,
         yesCreateIssues: core.getBooleanInput("yes-create-issues", { required: true })

@@ -24,7 +24,6 @@ namespace validations {
             currentRepoLabelToAdd,
             repoToSyncOwner,
             repoToSync,
-            repoToSyncPath,
             trackingIssueTemplateTitle,
             trackingIssueTemplateBody,
             yesCreateIssues
@@ -38,7 +37,6 @@ namespace validations {
         if ((yesCreateIssues || currentRepoLabelToAdd !== undefined) && !isString(currentRepoLabelToAdd)) stringErr("currentRepoLabelToAdd")
         if (!isString(repoToSyncOwner)) stringErr("repoToSyncOwner")
         if (!isString(repoToSync)) stringErr("repoToSync")
-        if (!isString(repoToSyncPath)) stringErr("repoToSyncPath")
         if ((yesCreateIssues || trackingIssueTemplateTitle !== undefined) && !isString(trackingIssueTemplateTitle)) stringErr("trackingIssueTemplateTitle")
         if ((yesCreateIssues || trackingIssueTemplateBody !== undefined) && !Array.isArray(trackingIssueTemplateBody)) formatErr(`["trackingIssueTemplateBody"] must be an array of strings`)
 
@@ -50,7 +48,6 @@ namespace validations {
             currentRepoLabelToAdd,
             repoToSyncOwner,
             repoToSync,
-            repoToSyncPath,
             trackingIssueTemplateTitle,
             trackingIssueTemplateBody,
             yesCreateIssues
