@@ -12,7 +12,7 @@ export const testConfig: Config = {
     trackingIssueTemplateTitle: "Tracking issue for {{ path }}: {{ sha-short }}",
     trackingIssueTemplateBody: [
         "URL: [{{ message }}]({{ url }})",
-        "Commit date: {{ commit-date }}",
+        "PullRequest date: {{ PullRequest-date }}",
         "Full SHA: {{ sha-full }}"
     ],
     yesCreateIssues: true

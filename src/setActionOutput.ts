@@ -1,17 +1,17 @@
-import { Commit, CreatedIssue } from "./types";
+import { PullRequest, CreatedIssue } from "./types";
 import * as core from "@actions/core";
 
 export type ActionOutputResult = {
-    newCommitsInSyncRepo: boolean,
-    newCommits: string,
+    newPullRequestsInSyncRepo: boolean,
+    newPullRequests: string,
     createdIssues?: string,
 }
 
-export function setActionOutput(createdIssues: CreatedIssue[], newCommits: Commit[]) {
-    const result: ActionOutputResult = { newCommitsInSyncRepo: newCommits.length > 0, newCommits: JSON.stringify(newCommits) }
+export function setActionOutput(createdIssues: CreatedIssue[], newPullRequests: PullRequest[]) {
+    const result: ActionOutputResult = { newPullRequestsInSyncRepo: newPullRequests.length > 0, newPullRequests: JSON.stringify(newPullRequests) }
 
-    core.setOutput("newCommitsInSyncRepo", result.newCommitsInSyncRepo)
-    core.setOutput("newCommits", result.newCommits)
+    core.setOutput("newPullRequestsInSyncRepo", result.newPullRequestsInSyncRepo)
+    core.setOutput("newPullRequests", result.newPullRequests)
 
     if (createdIssues.length > 0) {
         result.createdIssues = JSON.stringify(createdIssues)

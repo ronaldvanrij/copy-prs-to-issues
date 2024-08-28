@@ -1,6 +1,6 @@
 import * as github from "@actions/github"
 import { Config } from "./config"
-import { Commit } from "./types"
+import { PullRequest } from "./types"
 import { Logger } from "./logger"
 
 interface Params {
@@ -8,7 +8,7 @@ interface Params {
     per_page?: number
 }
 
-export function pollCommitsWith(config: Config, logger: Logger) {
+export function pollPullRequestsWith(config: Config, logger: Logger) {
     const token = config.token
     const owner = config.repoToSyncOwner
     const repo = config.repoToSync
@@ -30,7 +30,7 @@ export function pollCommitsWith(config: Config, logger: Logger) {
         logger.startGroup(`Pulling pull requests from ${owner}/${repo} since="${since}", path="${path}"`)
         try {
             for await (const { data } of iterator) {
-                logger.info(`Pulled a page with ${data.length} commits`)
+                logger.info(`Pulled a page with ${data.length} PullRequests`)
                 for (const prData of data) {
                     let pr: PullRequest = {
                         title: prData.title,
